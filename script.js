@@ -17,7 +17,7 @@ function navigateToUrl() {
     // Validate URL format
     try {
         new URL(input);
-        window.location.href = input;
+        window.location.href = input; // Navigate to the URL
     } catch (_) {
         alert('Please enter a valid URL.');
     }
