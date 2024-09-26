@@ -8,13 +8,13 @@ document.getElementById('goButton').addEventListener('click', navigateToUrl);
 
 function navigateToUrl() {
     let input = document.getElementById('urlInput').value.trim();
-    
-    // Automatically add http:// if no protocol is present
+
+    // Check if the input starts with "http://" or "https://"
     if (!input.startsWith('http://') && !input.startsWith('https://')) {
         input = 'http://' + input; // Default to http
     }
 
-    // Validate URL format (basic check)
+    // Validate URL format
     try {
         new URL(input);
         window.location.href = input;
