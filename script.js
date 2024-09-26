@@ -7,11 +7,18 @@ document.getElementById('urlInput').addEventListener('keypress', function (event
 document.getElementById('goButton').addEventListener('click', navigateToUrl);
 
 function navigateToUrl() {
-    const input = document.getElementById('urlInput').value;
-    // Check if the URL starts with http:// or https://
+    let input = document.getElementById('urlInput').value.trim();
+    
+    // Automatically add http:// if no protocol is present
     if (!input.startsWith('http://') && !input.startsWith('https://')) {
-        alert('Please enter a valid URL starting with http:// or https://');
-        return;
+        input = 'http://' + input; // Default to http
     }
-    window.location.href = input;
+
+    // Validate URL format (basic check)
+    try {
+        new URL(input);
+        window.location.href = input;
+    } catch (_) {
+        alert('Please enter a valid URL.');
+    }
 }
