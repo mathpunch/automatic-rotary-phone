@@ -1,20 +1,11 @@
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
 }
-
-#searchInput {
-    width: 100%;
+#search-input {
     padding: 10px;
-    margin-top: 20px;
+    width: 300px;
 }
-
-#searchResults {
-    margin-top: 20px;
-    text-align: left;
-}
-
-#searchResults div {
-    margin: 5px 0;
+#search-button {
+    padding: 10px;
 }
