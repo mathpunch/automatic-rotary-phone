@@ -1,7 +1,7 @@
 document.getElementById('goButton').addEventListener('click', function() {
     const urlInput = document.getElementById('urlInput').value.trim();
     if (urlInput) {
-        // Add 'http://' if the user doesn't include a protocol
+        // Automatically add 'http://' if the URL doesn't start with 'http://' or 'https://'
         const fullUrl = urlInput.startsWith('http://') || urlInput.startsWith('https://') ? urlInput : 'http://' + urlInput;
 
         // Set the iframe source to the entered URL
