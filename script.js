@@ -1,24 +1,30 @@
-document.getElementById('urlInput').addEventListener('keypress', function (event) {
-    if (event.key === 'Enter') {
-        navigateToUrl();
-    }
-});
+let idx;
 
-document.getElementById('goButton').addEventListener('click', navigateToUrl);
+fetch('search-data.json')
+    .then(response => response.json())
+    .then(data => {
+        idx = lunr(function () {
+            this.ref('id');
+            this.field('title');
+            this.field('content');
 
-function navigateToUrl() {
-    let input = document.getElementById('urlInput').value.trim();
+            data.forEach(doc => {
+                this.add(doc);
+            });
+        });
 
-    // Automatically add http:// if no protocol is present
-    if (!input.startsWith('http://') && !input.startsWith('https://')) {
-        input = 'http://' + input; // Default to http
-    }
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
 
-    // Validate URL format
-    try {
-        new URL(input);
-        window.location.href = input; // Navigate to the URL
-    } catch (_) {
-        alert('Please enter a valid URL.');
-    }
-}
+        searchInput.addEventListener('input', function () {
+            const results = idx.search(this.value);
+            searchResults.innerHTML = '';
+
+            results.forEach(result => {
+                const matchedDoc = data.find(doc => doc.id == result.ref);
+                const resultItem = document.createElement('div');
+                resultItem.innerHTML = `<a href="${matchedDoc.url}">${matchedDoc.title}</a>`;
+                searchResults.appendChild(resultItem);
+            });
+        });
+    });
