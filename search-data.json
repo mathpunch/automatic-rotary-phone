@@ -1,0 +1,5 @@
+[
+    {"id": 1, "title": "Home", "url": "index.html", "content": "Welcome to Rocky, your search engine."},
+    {"id": 2, "title": "About", "url": "about.html", "content": "Learn more about Rocky."},
+    {"id": 3, "title": "Contact", "url": "contact.html", "content": "Get in touch with Rocky."}
+]
