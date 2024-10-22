@@ -4,10 +4,8 @@ document.getElementById('goButton').addEventListener('click', function() {
         // Automatically add 'http://' if the URL doesn't start with 'http://' or 'https://'
         const fullUrl = urlInput.startsWith('http://') || urlInput.startsWith('https://') ? urlInput : 'http://' + urlInput;
 
-        // Set the iframe source to the entered URL
-        const contentFrame = document.getElementById('contentFrame');
-        contentFrame.src = fullUrl;
-        contentFrame.style.display = 'block'; // Show the iframe
+        // Open the URL in a new tab
+        window.open(fullUrl, '_blank');
     } else {
         alert("Please enter a valid URL.");
     }
